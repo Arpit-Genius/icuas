@@ -1,3 +1,0 @@
-The project is a mini version of ICUAS 2026 Simulation Round. The problem statement of icuas 2026 is broken down into multiple targets.
-
-Target - 1 : Find all the aruco markers in the 'ICUAS26_1' map and store the IDs and positions of the found aruco markers.
