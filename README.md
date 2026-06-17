@@ -29,7 +29,7 @@ If you have an NVIDIA GPU, please install `nvidia-container-toolkit` by followin
 
 Clone the this repository:
 ```
-git clone git@github.com:larics/icuas26_competition.git
+git clone git@github.com:Arpit-Genius/icuas.git
 ```
 Add  to  `~/.bashrc` and source it, or type in the current terminal:
 ```
