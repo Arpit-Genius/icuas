@@ -31,6 +31,7 @@ Clone the this repository:
 ```
 git clone git@github.com:Arpit-Genius/icuas.git
 ```
+Or, Download the .zip file of this repo directory. Unzip it and work in terminal in that directory.
 Add  to  `~/.bashrc` and source it, or type in the current terminal:
 ```
 export DOCKER_BUILDKIT=1
