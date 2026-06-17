@@ -134,6 +134,7 @@ def generate_launch_description():
             output='screen',
             parameters = [{'config_file': gz_bridge_yaml}]))
         
+    """
     launch_description.append(       
         Node(
             package='rviz2',
@@ -147,4 +148,5 @@ def generate_launch_description():
         )
         
     )
+    """
     return LaunchDescription(launch_description)
