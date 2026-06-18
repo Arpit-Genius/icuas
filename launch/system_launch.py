@@ -137,18 +137,18 @@ def generate_launch_description():
             parameters = [{'config_file': gz_bridge_yaml}]))
         
     
-    launch_description.append(       
-        Node(
-            package='rviz2',
-            namespace='',
-            executable='rviz2',
-            name='rviz2',
-            arguments=['-d' + os.path.join(get_package_share_directory('icuas26_competition'), 'config', 'config.rviz')],
-            parameters=[{
-                "use_sim_time": True,
-            }]
-        )
+    # launch_description.append(       
+    #     Node(
+    #         package='rviz2',
+    #         namespace='',
+    #         executable='rviz2',
+    #         name='rviz2',
+    #         arguments=['-d' + os.path.join(get_package_share_directory('icuas26_competition'), 'config', 'config.rviz')],
+    #         parameters=[{
+    #             "use_sim_time": True,
+    #         }]
+    #     )
         
-    )
+    # )
     
     return LaunchDescription(launch_description)
