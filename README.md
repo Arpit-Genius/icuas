@@ -53,6 +53,7 @@ docker build -t crazysim_icuas_img .
 # This will create docker container crazysim_icuas_cont and position you into the container
 
 ```
+If needed, make the script executable with `chmod +x first_run.sh`
 
 For subsequent use of the container, you can use:
 ```bash
