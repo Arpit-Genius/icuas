@@ -172,7 +172,6 @@ RUN git clone https://github.com/larics/icuas25_msgs.git
 RUN git clone --recurse-submodules https://github.com/IMRCLab/motion_capture_tracking.git
 
 WORKDIR $HOME/ros2_ws/src/crazyswarm2/crazyflie/scripts
-RUN rm $HOME/ros2_ws/src/crazyswarm2/crazyflie/scripts/crazyflie_server.py
 COPY to_copy/crazyflie_server.py $HOME/ros2_ws/src/crazyswarm2/crazyflie/scripts/
 RUN chmod +x $HOME/ros2_ws/src/crazyswarm2/crazyflie/scripts/crazyflie_server.py
 RUN rm $HOME/ros2_ws/src/crazyswarm2/crazyflie_interfaces/CMakeLists.txt
@@ -212,6 +211,19 @@ RUN apt-get update &&  apt-get upgrade -y && apt-get install -y \
                    ros-${ROS2_DISTRO}-octomap-msgs
 RUN apt install -y ros-${ROS2_DISTRO}-ros-gz${GZ_RELEASE}
 
+# Other stuff by us
+WORKDIR $HOME/ros2_ws/install/lib/crazyflie
+RUN cp $HOME/ros2_ws/src/crazyswarm2/crazyflie_examples/crazyflie_examples/vel_mux.py vel_mux.py
+RUN chmod +x vel_mux.py
+WORKDIR $HOME/ros2_ws/src/icuas26_competition/startup
+RUN rm _setup.sh
+COPY startup/_setup.sh $HOME/ros2_ws/src/icuas26_competition/startup/_setup.sh
+RUN rm session.yml
+COPY startup/session.yml $HOME/ros2_ws/src/icuas26_competition/startup/session.yml
+WORKDIR $HOME/ros2_ws/src/icuas26_competition/launch
+RUN rm system_launch.py
+COPY launch/system_launch.py $HOME/ros2_ws/src/icuas26_competition/launch/system_launch.py
+
 
 # setup ros2 environment variables
 RUN echo "export ROS_LOCALHOST_ONLY=1" >> $HOME/.bashrc
@@ -224,6 +236,8 @@ WORKDIR $HOME/ros2_ws
 RUN bash -c "source /opt/ros/${ROS2_DISTRO}/setup.bash;source $HOME/ros2_ws/install/setup.bash;colcon build --symlink-install --merge-install"
 RUN echo "ros2_ws" >> $HOME/.bashrc && \
     echo "source_ros2" >> $HOME/.bashrc
+
+RUN mv $HOME/ros2_ws/install/lib/crazyflie/crazyflie_server $HOME/ros2_ws/install/lib/crazyflie/crazyflie_server.py
 
 WORKDIR $HOME
 COPY to_copy/aliases $HOME/.bash_aliases

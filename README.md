@@ -22,6 +22,11 @@ echo "xhost +local:docker > /dev/null" >> ~/.profile
 
 If you have an NVIDIA GPU, please install `nvidia-container-toolkit` by following [these instructions](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
 
+To confirm you have the driver installed and is working correctly, run
+```bash
+nvidia-smi
+```
+It should show your GPU in the output. 
 
 ## Run Crazyflies in the Docker container
 
@@ -40,7 +45,7 @@ export DOCKER_BUILDKIT=1
 Run Dockerfile from the project root directory using the following commands:
 ```bash
 # Build a Dockerfile
-docker build --ssh default -t crazysim_icuas_img .
+docker build -t crazysim_icuas_img .
 
 # Run the crazysim_img2 container for the fist time
 ./first_run.sh
@@ -109,7 +114,9 @@ In this world, you will be able to see landing spots. When the UAV lands on a sp
 
 If you are working in the group and you are all using the same network, please check [ROS_DOMAIN_ID](https://docs.ros.org/en/eloquent/Tutorials/Configuring-ROS2-Environment.html#the-ros-domain-id-variable) in `.bashrc` in the container. Random number should be set during the build, however it is possible that some of you got the same number. If that is the situation please change it, so that your simulations do not crash.
 
-
+#### Some useful files
+`/root/ros2_ws/src/icuas26_competition/startup/_setup.sh` - Defines global variables which you can refer to/use in your code like number of drones, comms range etc. 
+`/root/ros2_ws/src/icuas26_competition/startup/session.yml` - Create terminal panes for your own code to run 
 
 ## Creating and working with Octomaps
 If you install `octomap_ros` package, and all its derivatives for ROS, you will be good to go to attempt to convert 3D models into octomaps. We have included a binary that converts an `.stl` file into a `.binvox` file. It is located in `scripts` folder and is called `binvox`. You can use it as follows:
