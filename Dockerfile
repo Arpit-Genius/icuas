@@ -217,8 +217,8 @@ RUN cp $HOME/ros2_ws/src/crazyswarm2/crazyflie_examples/crazyflie_examples/vel_m
 RUN chmod +x vel_mux.py
 WORKDIR $HOME/ros2_ws/src/icuas26_competition/startup
 RUN rm _setup.sh
-COPY startup/_setup.sh $HOME/ros2_ws/src/icuas26_competition/startup/_setup.sh
 RUN rm session.yml
+COPY startup/_setup.sh $HOME/ros2_ws/src/icuas26_competition/startup/_setup.sh
 COPY startup/session.yml $HOME/ros2_ws/src/icuas26_competition/startup/session.yml
 WORKDIR $HOME/ros2_ws/src/icuas26_competition/launch
 RUN rm system_launch.py
